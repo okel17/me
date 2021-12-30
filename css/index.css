@@ -42,9 +42,16 @@ section.app .content {
     animation: fadeIn linear 4s;
 }
 
-.name {
+.name, .links {
     animation: fadeIn linear 2s;
 }
+
+.links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 @keyframes fadeIn {
     0% {
@@ -59,7 +66,11 @@ p {
     margin-bottom: 1em;
 }
 
-body p:last-child { 
-    margin-bottom: 0em;
+
+.links a {
+    margin-right: .8em;
 }
 
+.links a:last-child {
+    margin-right: 0em;
+}
