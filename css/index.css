@@ -34,16 +34,25 @@ section.app .content {
   align-items: center;
 }
 
-.about {
+.col {
     max-width: 50%;
 }
 
+.about {
+    animation: fadeIn linear 4s;
+}
+
 .name {
-    max-width: 50%;
     animation: fadeIn linear 2s;
 }
 
 @keyframes fadeIn {
+    0% {
+         opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }   
 }
 
 p {
