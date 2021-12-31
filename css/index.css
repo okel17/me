@@ -39,11 +39,11 @@ section.app .content {
 }
 
 .about {
-    animation: fadeIn linear 4s;
+    animation: fadeIn linear 2s;
 }
 
 .name, .links {
-    animation: fadeIn linear 2s;
+    animation: fadeIn linear 1s;
 }
 
 .links {
