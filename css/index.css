@@ -39,11 +39,11 @@ section.app .content {
 }
 
 .about {
-    animation: fadeIn linear 2s;
+    animation: fadeIn linear .7s;
 }
 
 .name, .links {
-    animation: fadeIn linear 1s;
+    animation: fadeIn linear 0.5s;
 }
 
 .links {
@@ -56,6 +56,12 @@ section.app .content {
 @keyframes fadeIn {
     0% {
          opacity: 0;
+    }
+    50% {
+        opacity: .3;
+    }
+    80% {
+        opacity: .6;
     }
     100% {
         opacity: 1;
