@@ -1,6 +1,8 @@
 html {
   height: 100%;
+  width: 100%;
   font-size: 16px;
+  margin: 0; /* Default margin is 8px for html and body. :-( */
 }
 
 body {
@@ -9,12 +11,13 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   font-weight: 400;
   font-family: 'Verdana';
   color: #111;
   line-height: 1.6;
   text-rendering: optimizeLegibility !important;
+  margin: 0; /* Default margin is 8px for html and body. :-( */
 }
 
 @media (min-width: 600px) {
