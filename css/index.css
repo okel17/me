@@ -41,11 +41,17 @@ section.app .content {
     max-width: 50%;
 }
 
+.photo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .about {
     animation: fadeIn linear .7s;
 }
 
-.name, .links {
+.name, .links, .photo  {
     animation: fadeIn linear 0.5s;
 }
 
