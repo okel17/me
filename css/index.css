@@ -1,3 +1,29 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --link-color: #0b57d0;
+  --toggle-bg: rgba(0, 0, 0, 0.05);
+  --toggle-border: rgba(0, 0, 0, 0.1);
+  --toggle-hover-bg: rgba(0, 0, 0, 0.08);
+  --toggle-active-bg: #ffffff;
+  --toggle-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  --photo-border: rgba(0, 0, 0, 0.08);
+  --photo-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+html.dark {
+  --bg-color: #121212;
+  --text-color: #e4e4e7;
+  --link-color: #60a5fa;
+  --toggle-bg: rgba(255, 255, 255, 0.08);
+  --toggle-border: rgba(255, 255, 255, 0.14);
+  --toggle-hover-bg: rgba(255, 255, 255, 0.14);
+  --toggle-active-bg: rgba(255, 255, 255, 0.22);
+  --toggle-active-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  --photo-border: rgba(255, 255, 255, 0.14);
+  --photo-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
 html {
   height: 100%;
   width: 100%;
@@ -11,13 +37,15 @@ body {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   font-weight: 400;
-  font-family: 'Verdana';
-  color: #111;
+  font-family: 'Verdana', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.6;
   text-rendering: optimizeLegibility !important;
   margin: 0; /* Default margin is 8px for html and body. :-( */
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 @media (min-width: 600px) {
@@ -26,66 +54,153 @@ body {
   }
 }
 
+a {
+  color: var(--link-color);
+  transition: color 0.2s ease;
+}
+
+section.app {
+  width: 100%;
+}
+
 section.app .container {
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
 
 section.app .content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .col {
-    max-width: 50%;
+  max-width: 50%;
+}
+
+@media (max-width: 599px) {
+  .col {
+    max-width: 85%;
+    margin-top: 4.5rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .photo {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--photo-border);
+  box-shadow: var(--photo-shadow);
+  display: block;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-selector {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  background-color: var(--toggle-bg);
+  border: 1px solid var(--toggle-border);
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-btn {
+  background: transparent;
+  border: none;
+  border-radius: 9999px;
+  padding: 5px 8px;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.55;
+  transition: opacity 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.theme-btn:hover {
+  opacity: 0.9;
+  background-color: var(--toggle-hover-bg);
+}
+
+.theme-btn.active {
+  opacity: 1;
+  background-color: var(--toggle-active-bg);
+  box-shadow: var(--toggle-active-shadow);
+}
+
+.theme-btn:focus-visible {
+  outline: 2px solid var(--link-color);
+  outline-offset: 1px;
 }
 
 .about {
-    animation: fadeIn linear .7s;
+  animation: fadeIn linear 0.7s;
 }
 
-.name, .links, .photo  {
-    animation: fadeIn linear 0.5s;
+.name, .links, .photo {
+  animation: fadeIn linear 0.5s;
 }
 
 .links {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Invert dark silhouettes for dark mode visibility */
+html.dark .links img[alt="Github"],
+html.dark .links img[alt="Resume"] {
+  filter: invert(1);
+}
 
 @keyframes fadeIn {
-    0% {
-         opacity: 0;
-    }
-    50% {
-        opacity: .3;
-    }
-    80% {
-        opacity: .6;
-    }
-    100% {
-        opacity: 1;
-    }   
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }   
 }
 
 p {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
-
 .links a {
-    margin-right: .8em;
+  margin-right: 0.8em;
+  display: inline-flex;
+  align-items: center;
 }
 
 .links a:last-child {
-    margin-right: 0em;
+  margin-right: 0em;
 }

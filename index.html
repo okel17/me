@@ -1,38 +1,64 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Om Kelkar</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <script>
+      (function() {
+        try {
+          var preference = localStorage.getItem('theme-preference') || 'system';
+          var isDark = preference === 'dark' || (preference === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (isDark) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+          document.documentElement.setAttribute('data-theme', preference);
+        } catch (e) {}
+      })();
+    </script>
+    <script src="js/theme.js" defer></script>
   </head>
   <body>
-      <link rel="stylesheet" href="css/index.css" />
-      <section class="app">
-         <div class="container">
-           <div class="content">
-               <div class="col">
-                 <p class="name">
-                    Hi! My name is Om Kelkar (she/her). I am based in NYC. I build planet-scale software systems at Meta.  
-                 </p>
-                <div class="about">
-                  <p>
-                   I work on <a href="https://atscaleconference.com/ipnext-metas-next-generation-inference-platform/">IPNext</a>, an AI/ML serving platform supporting heterogeneous compute, global right-sizing, update safety, and more. I also work on compute fungibility with
-                   Meta's training clusters to promote fleet efficiency. 
-                 </p>
-                 <p>
-                   My previous work includes <a href="https://cs.brown.edu/~jcmace/papers/kaldor2017canopy.pdf">Canopy</a>, Meta's distributed tracing system and full-stack work on <a href="https://www.microsoft.com/en-us/microsoft-viva/insights">Microsoft Viva</a>.
-                </p>
-                <p>
-                   Outside of the office, I take on long-distance endurance challenges and work on my photography/videography skills. Bikes are cool. Sometimes I <a href="https://www.cycleblaze.com/profile/omgwat/">write about my trips by bike</a>.
-                </p>
-             </div>
-             <div class="links">
-                 <a href="https://github.com/okel17"><img alt="Github" src="img/github.png" width="20" height="20"></a> 
-                 <a href="https://www.linkedin.com/in/okelkar/"><img alt="Linkedin" src="img/linkedin.png" width="20" height="20"></a>
-                 <a href="https://www.flickr.com/photos/omkelkar/"><img alt="Flickr" src="img/flickr.png" width="20" height="20"></a>
-                 <a href="docs/Om_Resume_2026.pdf"><img alt="Resume" src="img/cv.png" width="20" height="20"></a>
-             </div>
-           </div>
+    <aside id="theme-selector" class="theme-selector" role="radiogroup" aria-label="Theme preference">
+      <button type="button" class="theme-btn" data-theme="light" role="radio" aria-label="Light mode" title="Light mode">☀️</button>
+      <button type="button" class="theme-btn" data-theme="dark" role="radio" aria-label="Dark mode" title="Dark mode">🌙</button>
+      <button type="button" class="theme-btn" data-theme="system" role="radio" aria-label="System mode" title="System mode">🤖</button>
+    </aside>
+
+    <section class="app">
+      <div class="container">
+        <div class="content">
+          <div class="col">
+            <div class="photo">
+              <img src="img/om-profile.png" alt="Photo of Om Kelkar" class="profile-pic" width="140" height="140" />
+            </div>
+            <p class="name">
+              Hi! My name is Om Kelkar (she/her). I am based in NYC. I build planet-scale software systems at Meta.  
+            </p>
+            <div class="about">
+              <p>
+                I work on <a href="https://atscaleconference.com/ipnext-metas-next-generation-inference-platform/">IPNext</a>, an AI/ML serving platform supporting heterogeneous compute, global right-sizing, update safety, and more. I also work on compute fungibility with
+                Meta's training clusters to promote fleet efficiency. 
+              </p>
+              <p>
+                My previous work includes <a href="https://cs.brown.edu/~jcmace/papers/kaldor2017canopy.pdf">Canopy</a>, Meta's distributed tracing system and full-stack work on <a href="https://www.microsoft.com/en-us/microsoft-viva/insights">Microsoft Viva</a>.
+              </p>
+              <p>
+                Outside of the office, I take on long-distance endurance challenges and work on my photography/videography skills. Bikes are cool. Sometimes I <a href="https://www.cycleblaze.com/profile/omgwat/">write about my trips by bike</a>.
+              </p>
+            </div>
+            <div class="links">
+              <a href="https://github.com/okel17"><img alt="Github" src="img/github.png" width="20" height="20"></a> 
+              <a href="https://www.linkedin.com/in/okelkar/"><img alt="Linkedin" src="img/linkedin.png" width="20" height="20"></a>
+              <a href="https://www.flickr.com/photos/omkelkar/"><img alt="Flickr" src="img/flickr.png" width="20" height="20"></a>
+              <a href="docs/Om_Resume_2026.pdf"><img alt="Resume" src="img/cv.png" width="20" height="20"></a>
+            </div>
+          </div>
         </div>
-       </div>
+      </div>
     </section>
   </body>
 </html>
