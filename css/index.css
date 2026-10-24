@@ -9,6 +9,7 @@
   --toggle-active-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
   --photo-border: rgba(0, 0, 0, 0.08);
   --photo-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --divider-color: #e5e7eb; /* light gray bar in light mode */
 }
 
 html.dark {
@@ -22,13 +23,18 @@ html.dark {
   --toggle-active-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
   --photo-border: rgba(255, 255, 255, 0.14);
   --photo-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --divider-color: #27272a; /* subtle gray bar in dark mode */
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html {
   height: 100%;
   width: 100%;
   font-size: 16px;
-  margin: 0; /* Default margin is 8px for html and body. :-( */
+  margin: 0;
 }
 
 body {
@@ -44,11 +50,12 @@ body {
   color: var(--text-color);
   line-height: 1.6;
   text-rendering: optimizeLegibility !important;
-  margin: 0; /* Default margin is 8px for html and body. :-( */
+  margin: 0;
+  padding: 1.5rem;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
   body {
     justify-content: center;
   }
@@ -77,34 +84,87 @@ section.app .content {
   width: 100%;
 }
 
-.col {
-  max-width: 50%;
-}
-
-@media (max-width: 599px) {
-  .col {
-    max-width: 85%;
-    margin-top: 4.5rem;
-    margin-bottom: 2rem;
-  }
-}
-
-.photo {
+/* Two-column layout on desktop, stacked on mobile */
+.profile-card {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  max-width: 900px;
+  width: 100%;
+  margin: 2rem auto;
+  gap: 2.75rem;
+}
+
+.photo-col {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .profile-pic {
-  width: 140px;
-  height: 140px;
+  width: 208px;
+  height: 208px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid var(--photo-border);
   box-shadow: var(--photo-shadow);
   display: block;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Vertical separating bar between photo and text */
+.divider {
+  width: 1px;
+  align-self: stretch;
+  margin: 0.5rem 0;
+  background-color: var(--divider-color);
+  flex-shrink: 0;
+  border-radius: 1px;
+  transition: background-color 0.2s ease;
+}
+
+.text-col {
+  flex: 1;
+  min-width: 0;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+@media (max-width: 767px) {
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 4.5rem; /* leaves room for top-right theme toggle */
+    margin-bottom: 2rem;
+    max-width: 540px;
+  }
+
+  .photo-col {
+    margin-bottom: 0.25rem;
+  }
+
+  .profile-pic {
+    width: 175px;
+    height: 175px;
+  }
+
+  /* Hide vertical divider when stacked vertically on mobile */
+  .divider {
+    display: none;
+  }
+
+  .links {
+    justify-content: center;
+  }
 }
 
 .theme-selector {
@@ -160,14 +220,8 @@ section.app .content {
   animation: fadeIn linear 0.7s;
 }
 
-.name, .links, .photo {
+.name, .links, .photo-col, .divider {
   animation: fadeIn linear 0.5s;
-}
-
-.links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Invert dark silhouettes for dark mode visibility */
@@ -195,12 +249,18 @@ p {
   margin-bottom: 1em;
 }
 
-.links a {
-  margin-right: 0.8em;
-  display: inline-flex;
-  align-items: center;
+p:first-child {
+  margin-top: 0;
 }
 
-.links a:last-child {
-  margin-right: 0em;
+.links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.links a:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
 }
